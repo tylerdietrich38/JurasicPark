@@ -43,7 +43,7 @@ namespace JurasicPark
 
         static void Main(string[] args)
         {
-            var dinosaur = new Dinosaur();
+            var dinosaurs = new List<Dinosaur>();
 
             DisplayGreeting();
 
@@ -52,7 +52,7 @@ namespace JurasicPark
             while (keepGoing)
             {
                 Console.WriteLine();
-                Console.Write("Do you want to (A)dd a Dinosaur or (R)emove a Dinosaur or (T)ransfer a dinosaur or (V)iew all the dinosaurs or (Q)uit: ");
+                Console.Write("Do you want to (A)dd a Dinosaur or (R)emove a Dinosaur or (T)ransfer a dinosaur or (V)iew all the dinosaurs or (S)ummarize the dinosaurs or (Q)uit: ");
                 var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
@@ -93,7 +93,6 @@ namespace JurasicPark
                         dinosaurs.Remove(removedDinosaur);
                         Console.WriteLine($"The {toRemove} went extinct");
                     }
-
                 }
                 else if (choice == "T")
                 {
@@ -113,8 +112,12 @@ namespace JurasicPark
                 }
                 else if (choice == "S")
                 {
-                    var toSummary = PromptForString("What are you wanting to summarize? ");
-                    Dinosaur summaryDinosaur =
+                    var toSummary = dinosaurs.OrderBy(dinosaur => dinosaur.DietType);
+                    foreach (var summaryDinosaurs in toSummary)
+                    {
+                        Console.WriteLine($"There are {toSummary}");
+                    }
+
                 }
 
             }
