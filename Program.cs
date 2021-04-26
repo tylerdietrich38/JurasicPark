@@ -61,12 +61,11 @@ namespace JurasicPark
                 }
                 else if (choice == "V")
                 {
-                    foreach (var dinosaur in dinosaurs)
+                    var WhenAcquired = dinosaurs.OrderBy(dinosaur => dinosaur.DateAcquired);
+                    foreach (var dinosaur in WhenAcquired)
                     {
-                        // Console.WriteLine($"The {dinosaur.Name} is a {dinosaur.DietType}, while weighing {dinosaur.Weight} lbs, in enclosure number {dinosaur.EnclosureNumber}, and was acquired on {dinosaur.DateAcquired}");
                         Console.WriteLine(dinosaur.Description());
                     }
-                    var WhenAcquired = dinosaurs.OrderBy(dinosaur => dinosaur.DateAcquired);
                 }
                 else if (choice == "A")
                 {
@@ -112,11 +111,15 @@ namespace JurasicPark
                 }
                 else if (choice == "S")
                 {
-                    var toSummary = dinosaurs.OrderBy(dinosaur => dinosaur.DietType);
-                    foreach (var summaryDinosaurs in toSummary)
-                    {
-                        Console.WriteLine($"There are {toSummary}");
-                    }
+                    var carnivoreSummary = dinosaurs.Where(dinosaurs => dinosaurs.DietType == "carnivore").Count();
+                    var herbivoreSummary = dinosaurs.Count(dinosaurs => dinosaurs.DietType == "herbivore");
+
+                    Console.WriteLine($"There are {carnivoreSummary} carnivores and {herbivoreSummary} herbivores. ");
+
+                    // var toSummary = dinosaurs.OrderBy(dinosaur => dinosaur.DietType);
+                    // foreach (var summaryDinosaurs in toSummary)
+                    // {
+                    // }
 
                 }
 
